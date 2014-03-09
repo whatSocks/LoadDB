@@ -2,7 +2,7 @@ LoadDB
 =====
 This is a simple graph.db management application built in Sinatra. 
 
-Place load.db adjacent to your instance of Neo4j (here the instance is neo4j-community-2.0.1) and `rackup` to start the web application. 
+Place load.db adjacent to your instance of Neo4j (here the instance is neo4j-community-2.0.1) `bundle install` to deal with your gems and `rackup` to start the web application. 
 Tar and compress the graph.db file you want to upload (`tar -zcvf graph.db.tar.gz graph.db`) and use the form to upload and label the file.
 The graph.db.tar.gz files will be stored in the "Uploads" folder, and named like `[user-generated label]graph.db.tar.gz`. 
 
