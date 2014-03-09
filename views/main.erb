@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+</head>
+<body>
+  <h1>Manage your graph.db.tar.gz files</h1>
+  <div class="container">
+    <b>Upload a New graph.db.tar.gz</b>
+    <form action="upload" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+      <i>Choose graph.db.tar.gz file, name it (alphanumeric), and hit upload</i>
+      <br>
+      <input type="file" name="uploaded_data" id="uploaded_data">
+      <input type="text" name="graphname">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+  <div class="container">
+    <b>Load an Available graph.db</b>
+    <form method="post" action="/load">
+      <select name="graphname" size="1">
+        <%data[:filehash].each do |key, value|%>
+        <option value=<%="#{key}"%>><%="#{key}"%></option>
+        <%end%>
+      </select>
+      <input type="submit" value="Load your selection!" name="load">
+    </form>
+  </div><!-- /.container -->
+  <div class="container">
+    <b>Delete an Available graph.db</b>
+    <form method="post" action="/del">
+      <select name="graphname" size="1">
+        <%data[:filehash].each do |key, value|%>
+        <option value=<%="#{key}"%>><%="#{key}"%></option>
+        <%end%>
+      </select>
+      <input type="submit" value="Delete your selection!"> 
+    </form>
+  </div><!-- /.container -->
+  <div class="container">
+    <b>Rebuild</b>
+    <form method="post" action="/rebuild">
+      <input type="submit" value="Rebuild from reality"> 
+    </form>
+  </div><!-- /.container -->
+  <div class="container">
+    <b>Toggle Neo4j: <%="#{data[:neo_status]}"%></b>
+    <form method="post" action="/toggle">
+      <select name="toggle">
+        <option value=1>On</option>
+        <option value=0>Off</option>
+      </select>
+      <input type="submit" value="Toggle"> 
+    </form>
+  </div><!-- /.container -->
+</body>
+</html>
