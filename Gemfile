@@ -1,5 +1,5 @@
 source "https://rubygems.org"
 
-require 'json'
+gem 'json', '~>1.8.1'
 
-require 'sinatra'
+gem 'sinatra', '~>1.4.4'
