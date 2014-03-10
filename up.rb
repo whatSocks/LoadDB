@@ -20,14 +20,14 @@ post '/del' do
     manjson.delete_db(params)
     data = {:message => "#{params[:graphname]} has been deleted.", :header => "Success"}
   elsif params[:graphname] == nil
-    data = {:message => "Nothing to delete.", :header => "Success...sorta"}}
+    data = {:message => "Nothing to delete.", :header => "Success...sorta"}
   end
-  erb :response , :locals => {:data => data}
+  erb :response, :locals => {:data => data}
 end
 
 post '/rebuild' do 
   manjson.rebuild
-  data = {:message => "Reality has been established", :header => "Success"}}
+  data = {:message => "Reality has been established", :header => "Success"}
   erb :response, :locals => {:data => data}
 end
 
