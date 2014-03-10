@@ -18,18 +18,17 @@ end
 post '/del' do 
   if params[:graphname] != nil
     manjson.delete_db(params)
-    data = {:message => "#{params[:graphname]} has been deleted."}
-    erb :yep, :locals => {:data => data}
+    data = {:message => "#{params[:graphname]} has been deleted.", :header => "Success"}
   elsif params[:graphname] == nil
-    data = {:message => "Nothing to delete."}
-    erb :nope , :locals => {:data => data}
+    data = {:message => "Nothing to delete.", :header => "Success...sorta"}}
   end
+  erb :response , :locals => {:data => data}
 end
 
 post '/rebuild' do 
   manjson.rebuild
-  data = {:message => "Reality has been established"}
-  erb :yep, :locals => {:data => data}
+  data = {:message => "Reality has been established", :header => "Success"}}
+  erb :response, :locals => {:data => data}
 end
 
 post '/load' do 
@@ -37,16 +36,16 @@ post '/load' do
   if params[:graphname] != nil
     manjson.load(params)
     data[:message] = "#{params[:graphname]} has been loaded"
-    erb :yep, :locals => {:data => data}
+    data[:header] = "Success"
   elsif params[:graphname] == nil
     data[:message] = "Nothing to load"
-    erb :nope, :locals => {:data => data}
+    data[:header] = "Success...sorta"
   end
+  erb :response, :locals => {:data => data}
 end
 
 post '/toggle' do 
-  puts params
-  data = {}
+  data = {:header => "Status"}
   if params[:toggle] == "0"
     manneo.neo4j_stop 
     data[:message] = manneo.status_check
@@ -55,13 +54,14 @@ post '/toggle' do
     manneo.neo4j_start
     data[:message] = manneo.status_check
   end
-  erb :yep, :locals => {:data => data}
+  erb :response, :locals => {:data => data}
 end
 
 post '/upload' do
-  data = {}
+  puts params 
+  data = {:header => "Upload"}
 
-  if (params[:uploaded_data][:filename] == "graph.db.tar.gz") && (params[:uploaded_data][:type] == "application/x-gzip") && (params[:graphname].gsub(/[^0-9A-Za-z]/, '').length != 0)
+  if (params[:uploaded_data][:filename] == "graph.db.tar.gz") && (params[:graphname].gsub(/[^0-9A-Za-z]/, '').length != 0) && (params[:uploaded_data][:type] == "application/x-gzip")
     input = {}    
     input[:filename] = "#{params[:graphname].gsub(/[^0-9A-Za-z]/, '')}" + "#{params[:uploaded_data][:filename]}"
     input[:graphname] = "#{params[:graphname].gsub(/[^0-9A-Za-z]/, '')}"
@@ -70,9 +70,8 @@ post '/upload' do
     data[:message] = "Upload of #{params[:graphname].gsub(/[^0-9A-Za-z]/, '')} successful"
     manjson.new_upload(input) #uploads
     #manjson.load(input) #loads
-    erb :yep, :locals => {:data => data}
   else
     data[:message] = "Upload #{params[:graphname].gsub(/[^0-9A-Za-z]/, '')} unsuccessful"
-    erb :nope, :locals => {:data => data}
   end
+  erb :response, :locals => {:data => data}
 end
