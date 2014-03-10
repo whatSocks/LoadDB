@@ -21,4 +21,4 @@ If you're using a different path or Neo4j version, you can change adjust your se
 TODO:
 -----
  - rspec
- - Edit fail when no file is selected
+ - Fix fail when no graph.db.tar.gz file is selected for upload
