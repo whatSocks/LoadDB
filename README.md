@@ -21,4 +21,4 @@ If you're using a different path or Neo4j version, you can change adjust your se
 TODO:
 -----
  - rspec
- - consolidate the yep and nope views
+ - Edit fail when no file is selected
