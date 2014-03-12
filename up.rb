@@ -64,6 +64,13 @@ post '/save' do
   erb :response, :locals => {:data => data}
 end
 
+post '/save' do 
+  data = {:header => "Status"}
+  manjson.save_db(params)
+  data[:message] = "Current graph.db should be saved"
+  erb :response, :locals => {:data => data}
+end
+
 post '/upload' do
   puts params 
   data = {:header => "Upload"}
