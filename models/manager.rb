@@ -19,12 +19,15 @@ class Manager
 
   def rebuild
     #rebuilds @obj_hash from the actual contents of Uploads
+    puts "in rebuild"
     @obj_hash = {}
-    list = %x{ls Uploads | grep  -e "graph.db.tar.gz"}.split("graph.db.tar.gz\n")
+    list = []
+    list = %x{ls Uploads | grep graph.tar.gz}.split("graph.tar.gz\n")
     list.each do |item|
       @obj_hash[item] =  "#{item}graph.db.tar.gz"
     end
     write
+    puts @obj_hash
   end
 
   def load(input = {})
