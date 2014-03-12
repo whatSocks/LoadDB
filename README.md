@@ -22,4 +22,3 @@ TODO:
 -----
  - rspec
  - Fix fail when no graph.db.tar.gz file is selected for upload
- - Add 'save' function. Oops. 
