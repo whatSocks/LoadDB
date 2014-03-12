@@ -17,6 +17,15 @@
     </form>
   </div>
   <div class="container">
+    <b>Save the currently running graph.db</b>
+    <form action="save" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+      <i>Name it!</i>
+      <br>
+      <input type="text" name="graphname">
+      <input type="submit" value="Save!">
+    </form>
+  </div>
+  <div class="container">
     <b>Load an Available graph.db</b>
     <form method="post" action="/load">
       <select name="graphname" size="1">
