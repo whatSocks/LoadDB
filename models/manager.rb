@@ -68,7 +68,8 @@ class Manager
 
   def save_db(input = {})
     clock = Time.new
-    name = input[:graphname] || clock.inspect.to_s.gsub(/[^0-9A-Za-z]/, '')
+    name = clock.inspect.to_s.gsub(/[^0-9A-Za-z]/, '')
+    name = input[:graphname] unless input[:graphname] == ""
     @obj_hash = JSON.parse(File.read('file.json'))
     %x{ tar -zcvf Uploads/#{name}graph.db.tar.gz #{@neocon.settings[:path]}#{@neocon.settings[:version]}/data/graph.db }
     log(__callee__, input[:graphname].to_s)
