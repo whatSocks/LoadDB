@@ -22,7 +22,7 @@ class Manager
     puts "in rebuild"
     @obj_hash = {}
     list = []
-    list = %x{ls Uploads | grep graph.tar.gz}.split("graph.tar.gz\n")
+    list = %x{ls Uploads | grep graph.db.tar.gz}.split("graph.db.tar.gz\n")
     list.each do |item|
       @obj_hash[item] =  "#{item}graph.db.tar.gz"
     end
