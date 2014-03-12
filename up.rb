@@ -57,11 +57,18 @@ post '/toggle' do
   erb :response, :locals => {:data => data}
 end
 
+post '/save' do 
+  data = {:header => "Status"}
+  manjson.save_db(params)
+  data[:message] = "Current graph.db should be saved"
+  erb :response, :locals => {:data => data}
+end
+
 post '/upload' do
   puts params 
   data = {:header => "Upload"}
- 
-  if (params[:graphname].gsub(/[^0-9A-Za-z]/, '').length != 0) && (params[:uploaded_data][:type] == "application/x-gzip")
+
+  if (params[:uploaded_data][:filename] == "graph.db.tar.gz") && (params[:graphname].gsub(/[^0-9A-Za-z]/, '').length != 0) && (params[:uploaded_data][:type] == "application/x-gzip")
     input = {}    
     input[:filename] = "#{params[:graphname].gsub(/[^0-9A-Za-z]/, '')}" + "#{params[:uploaded_data][:filename]}"
     input[:graphname] = "#{params[:graphname].gsub(/[^0-9A-Za-z]/, '')}"
