@@ -14,6 +14,8 @@ Use the **Load** and **Delete** fields to load and delete files from the upload 
 
 **Toggle** turns Neo4j on or off. 
 
+**Save** saves whatever graph.db Neo4j is using at the moment. Make sure to give your snapshot a name. 
+
 If you're using a different path or Neo4j version, you can change adjust your settings under /models/neo4j-controller.rb:
 
 `@settings = {version: "neo4j-community-2.0.1", path:"../" }`
